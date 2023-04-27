@@ -14,6 +14,7 @@ export async function createPost(postData) {
     body: JSON.stringify(postData),
   });
 
-  return await response.json();
-  
+  const post = await response.json();
+
+  console.log(post)
 }
