@@ -14,13 +14,16 @@ export function setLoginFormListener() {
            const action = form.action;
            const method = form.method;
 
-           login(profile);
+           login(profile)
+             .then(() => {
+               console.log("Login successful"); // Add this line
+               window.location.href = "/post/create/index.html";
+             })
+             .catch((error) => {
+               console.error("Login failed:", error);
+             });
+           
          });
         
-    }
-
-   
-
-   
-    
+    }   
 }
