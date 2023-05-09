@@ -6,8 +6,17 @@ import router from "./router.mjs"; "./router.mjs";
 
 router();
 
-templates();
-postMethods();
+async function testTemplate() {
+  const posts = await postMethods.getPosts();
+  if (Array.isArray(posts) && posts.length > 0) {
+    const container = document.querySelector("#posts");
+    templates.renderPostTemplates(posts, container);
+  } else {
+    console.error("Error: Unable to retrieve posts.");
+  }
+}
+
+testTemplate();
 
 
 

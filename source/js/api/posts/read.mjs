@@ -16,6 +16,7 @@ export async function getPosts() {
   const updatePosts = await response.json();
 
   console.log(updatePosts);
+  
   return updatePosts;
 }
 
@@ -30,4 +31,8 @@ export async function getPost(id) {
   const updatePost = await response.json();
 
   console.log(updatePost);
+  
 }
+
+
+
