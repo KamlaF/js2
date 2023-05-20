@@ -3,7 +3,7 @@ import * as postMethods from "./api/posts/index.mjs";
 import * as filterPosts from "./helpers/posts/filter.mjs";
 
 import router from "./router.mjs";
-("./router.mjs");
+//("./router.mjs");
 
 router();
 

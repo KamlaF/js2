@@ -14,15 +14,22 @@ export async function register(profile) {
     method,
     body: JSON.stringify(profile),
   });
+  const json = await response.json();
 
-  // Check if the request was successful
   if (!response.ok) {
-    // If not, log the status and the error message, if any
-    const errorText = await response.text();
-    console.error("Error status:", response.status, "Error text:", errorText);
-    throw new Error("Registration failed");
+    throw new Error(json.errors[0].message);
   }
 
-  const result = await response.json();
-  return "You are now registered";
+  return json;
+  
+  // Check if the request was successful
+  //if (!response.ok) {
+    // If not, log the status and the error message, if any
+   // const errorText = await response.text();
+    //console.error("Error status:", response.status, "Error text:", errorText);
+    //throw new Error("Registration failed");
+  //}
+
+ // const result = await response.json();
+  //return "You are now registered";
 }

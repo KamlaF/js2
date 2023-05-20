@@ -1,22 +1,32 @@
 import { API_SOCIAL_URL } from "../constants.mjs";
 import { authFetch } from "./authFetch.mjs";
-import { renderPosts } from "/source/js/templates/posts/renderPosts.mjs";
-import { filterPosts } from "/source/js/helpers/posts/filter.mjs";
-import {
-  setSearchListener 
-} from "/source/js/handlers/posts/searchListener.mjs";
+
 
 const path = "/posts";
 
 export async function getPosts() {
   const updatePostURL = `${API_SOCIAL_URL}${path}`;
   const response = await authFetch(updatePostURL);
-  const updatePosts = await response.json();
+  
 
-  console.log(updatePosts);
-  renderPosts(updatePosts);
-  setSearchListener(updatePosts);
-  return updatePosts;
+  const json = await response.json();
+  if (response.ok) {
+    return json;
+  }
+  throw new Error(json.errors[0].messages);
+  
+}
+
+export async function getUserPosts(name) {
+  
+    const updatePostURL = `${API_SOCIAL_URL}/profiles/${name}${path}`;
+  const response = await authFetch(updatePostURL);
+
+  const json = await response.json();
+  if (response.ok) {
+    return json;
+  }
+  throw new Error(json.errors[0].messages);
 }
 
 export async function getPost(id) {
