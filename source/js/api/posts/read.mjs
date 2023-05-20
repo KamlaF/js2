@@ -1,83 +1,15 @@
 import { API_SOCIAL_URL } from "../constants.mjs";
 import { authFetch } from "./authFetch.mjs";
+import { renderPosts } from "/source/js/templates/posts/renderPosts.mjs";
+import { filterPosts } from "/source/js/helpers/posts/filter.mjs";
+import {
+  setSearchListener 
+} from "/source/js/handlers/posts/searchListener.mjs";
 
-const action = "/posts";
-
-function renderPosts(posts) {
-  const postsElement = document.getElementById("posts");
-  if (!postsElement) {
-    return; }
-  postsElement.innerHTML = "";
-
-  posts.forEach((post) => {
-    const postElement = document.createElement("div");
-    postElement.className = "post mb-3";
-
-    const postTitle = document.createElement("h3");
-    postTitle.textContent = post.title;
-    postElement.appendChild(postTitle);
-
-    if (post.media) {
-      const postImage = document.createElement("img");
-      postImage.src = post.media;
-      postImage.alt = `${post.title} image`;
-      postImage.className = "img-fluid mb-2 img-post";
-      postElement.appendChild(postImage);
-    }
-
-    const postBody = document.createElement("p");
-    postBody.textContent = post.body;
-    postElement.appendChild(postBody);
-
-    if (post.tags.length > 0) {
-      const postTags = document.createElement("p");
-      postTags.textContent = `Tags: ${post.tags.join(", ")}`;
-      postElement.appendChild(postTags);
-    }
-
-    const postInfo = document.createElement("p");
-    postInfo.textContent = `Created: ${post.created} | Updated: ${post.updated}`;
-    postElement.appendChild(postInfo);
-
-    postsElement.appendChild(postElement);
-  });
-}
-
-function filterPosts(query, posts, filterImages = false) {
-  return posts.filter((post) => {
-    const queryLowerCased = query.toLowerCase();
-    const titleMatch = post.title.toLowerCase().includes(queryLowerCased);
-    const idMatch = post.id.toString() === query;
-    const hasImage = filterImages ? post.media : true;
-
-    return (titleMatch || idMatch) && hasImage;
-  });
-}
-
-function setSearchListener(posts) {
-  const searchInput = document.getElementById("search");
-  const filterImagesCheckbox = document.getElementById("filterImages");
-
-  if (searchInput && filterImagesCheckbox) {
-    searchInput.addEventListener("input", () => {
-      applyFilter(posts);
-    });
-
-    filterImagesCheckbox.addEventListener("change", () => {
-      applyFilter(posts);
-    });
-
-    function applyFilter(posts) {
-      const query = searchInput.value;
-      const filterImages = filterImagesCheckbox.checked;
-      const filteredPosts = filterPosts(query, posts, filterImages);
-      renderPosts(filteredPosts);
-    }
-  }
-}
+const path = "/posts";
 
 export async function getPosts() {
-  const updatePostURL = `${API_SOCIAL_URL}${action}`;
+  const updatePostURL = `${API_SOCIAL_URL}${path}`;
   const response = await authFetch(updatePostURL);
   const updatePosts = await response.json();
 
@@ -91,9 +23,23 @@ export async function getPost(id) {
   if (!id) {
     throw new Error("Get requires a postID");
   }
-  const getPostURL = `${API_SOCIAL_URL}${action}/${id}`;
+  const getPostURL = `${API_SOCIAL_URL}${path}/${id}`;
   const response = await authFetch(getPostURL);
   const updatePost = await response.json();
 
   console.log(updatePost);
+}
+
+export async function searchPosts(tag) {
+  if (!tag.trim()) {
+    throw new Error("Search requires a atg value");
+  }
+  const url = `${API_SOCIAL_URL}${path}?_tag=${tag}`;
+  const response = await fetch(url);
+  const json = await response.json();
+  if (response.ok) {
+    return json
+  }
+  throw new Error(json.errors[0].messages);
+  
 }

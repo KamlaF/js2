@@ -1,8 +1,9 @@
+import * as templates from "./templates/index.mjs";
+import * as postMethods from "./api/posts/index.mjs";
+import * as filterPosts from "./helpers/posts/filter.mjs";
 
-import * as templates from "./js/templates/index.mjs";
-import * as postMethods from "./js/api/posts/index.mjs";
-
-import router from "./router.mjs"; "./router.mjs";
+import router from "./router.mjs";
+("./router.mjs");
 
 router();
 
@@ -17,7 +18,5 @@ async function testTemplate() {
 }
 
 testTemplate();
-
-
 
 

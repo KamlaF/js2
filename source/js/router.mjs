@@ -1,4 +1,4 @@
-import * as listeners from "./js/handlers/index.mjs";
+import * as listeners from "./handlers/index.mjs";
 
 export default function router() {
   const path = location.pathname;

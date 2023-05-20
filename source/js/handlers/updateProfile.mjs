@@ -1,6 +1,6 @@
 import { getProfile, updateProfile } from "../api/profiles/index.mjs";
 
-import { load } from "../handlers/storage/index.mjs";
+import { load } from "../storage/index.mjs";
 
 export async function setUpdateProfileListener() {
   const form = document.querySelector("#editProfile");
