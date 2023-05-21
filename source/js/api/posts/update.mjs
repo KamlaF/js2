@@ -2,33 +2,36 @@ import { API_SOCIAL_URL } from "../constants.mjs";
 import { authFetch } from "./authFetch.mjs";
 
 const action = "/posts";
-const method = "put";
+const method = "PUT";
 
 /**
- * Updates a post with the given data.
+ * Updates a post with the provided data.
  *
- * @param {Object} postData - The data to update the post with.
- * @param {string|number} postData.id - The ID of the post to update.
- * @throws Will throw an error if a post ID is not provided.
- * @returns {Promise<Object>} The updated post from the server.
- * @throws Will throw an error if the fetch request fails.
+ * @param {Object} postData - The data of the post to be updated.
+ * @throws {Error} Will throw an error if the update request fails or if the postData does not have an id.
  */
 export async function updatePost(postData) {
   if (!postData.id) {
     throw new Error("Update requires a postID");
   }
+
   const updatePostURL = `${API_SOCIAL_URL}${action}/${postData.id}`;
 
-  const response = await authFetch(updatePostURL, {
-    method,
-    body: JSON.stringify(postData),
-  });
+  try {
+    const response = await authFetch(updatePostURL, {
+      method,
+      body: JSON.stringify(postData),
+    });
 
-  const json = await response.json();
+    if (!response.ok) {
+      const json = await response.json();
+      throw new Error(json.errors[0].message);
+    }
 
-  if (!response.ok) {
-    throw new Error(json.errors[0].message);
+    const update = await response.json();
+    console.log(update);
+  } catch (error) {
+    console.error(error.message);
+    throw error;
   }
-
-  return json;
 }
