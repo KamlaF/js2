@@ -1,3 +1,14 @@
+/**
+ * Sets the event listener for the "input" and "change" events on searchInput and filterImagesCheckbox respectively,
+ * which applies the post filter when these events are triggered.
+ *
+ * When triggered, it fetches the query and filterImages values,
+ * applies the post filter with these parameters, and then re-renders the posts and user posts.
+ *
+ * @function setSearchListener
+ * @module
+ * @param {Object[]} posts - An array of post objects.
+ */
 import { filterPosts } from "/source/js/helpers/posts/filter.mjs";
 import { renderPosts } from "/source/js/templates/posts/renderPosts.mjs";
 import { renderUserPosts } from "../../templates/posts/renderUserPosts.mjs";

@@ -1,3 +1,10 @@
+/**
+ * Implements routing based on the current path of the application.
+ * Sets specific form listeners based on the current location path.
+ *
+ * @module router
+ */
+
 import * as listeners from "./handlers/index.mjs";
 
 export default function router() {
@@ -15,10 +22,10 @@ export default function router() {
     case "/posts/":
     case "/posts/index.html":
       listeners.setDisplayPostsListener();
-      break; 
+      break;
     case "/posts/user.html":
       listeners.setDisplayUserPostsListener();
-      break; 
+      break;
     case "/post/create/":
     case "/post/create/index.html":
       listeners.setCreatePostFormListener();

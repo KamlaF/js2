@@ -1,3 +1,13 @@
+/**
+ * Sets the event listener for the "submit" event on the form with id "registration-form".
+ *
+ * When the form is submitted, it prevents the default form submission, gets the form data,
+ * formats the data, and tries to register the user with the given data. If the registration is successful,
+ * it logs the message from the server. If the registration fails, it logs the error.
+ *
+ * @function setRegisterFormListener
+ * @module
+ */
 import { register } from "../api/auth/register.mjs";
 
 export function setRegisterFormListener() {

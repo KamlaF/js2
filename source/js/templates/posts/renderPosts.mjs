@@ -1,5 +1,13 @@
+/**
+ * Renders a list of posts on the web page.
+ *
+ * This function creates and appends HTML elements for each post in the input list. The post is displayed with its title, body, tags, and timestamps for creation and last update. If the post has an associated media, it is also displayed.
+ *
+ * @param {Object[]} posts - Array of post objects to be rendered. Each post object should have the following properties: 'title', 'body', 'tags' (array of strings), 'created', 'updated', and optionally 'media' (URL string).
+ */
+
 export function renderPosts(posts) {
-    console.log(posts); 
+  console.log(posts);
   const postsElement = document.getElementById("posts");
   if (!postsElement) {
     return;

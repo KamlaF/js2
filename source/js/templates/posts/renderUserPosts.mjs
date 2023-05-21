@@ -1,7 +1,15 @@
+/**
+ * Renders a list of posts on the web page.
+ *
+ * This function creates and appends HTML elements for each post in the input list. The post is displayed with its title, body, tags, and timestamps for creation and last update. If the post has an associated media, it is also displayed.
+ *
+ * @param {Object[]} posts - Array of post objects to be rendered. Each post object should have the following properties: 'title', 'body', 'tags' (array of strings), 'created', 'updated', and optionally 'media' (URL string).
+ */
+
 import { removePost } from "/source/js/api/posts/delete.mjs";
 
 export function renderUserPosts(posts) {
-    console.log(posts); 
+  console.log(posts);
   const postsElement = document.getElementById("userPosts");
   if (!postsElement) {
     return;
@@ -39,26 +47,24 @@ export function renderUserPosts(posts) {
     postElement.appendChild(postInfo);
 
     const button = document.createElement("a");
-    button.href = "/post/edit/index.html"; 
+    button.href = "/post/edit/index.html";
     button.className = "btn btn-primary";
-    button.textContent = "Edit Post"; 
-    postElement.appendChild(button); 
+    button.textContent = "Edit Post";
+    postElement.appendChild(button);
 
-    
     const deleteButton = document.createElement("button");
     deleteButton.textContent = "Delete Post";
-    deleteButton.className = "btn btn-danger ms-3"; 
+    deleteButton.className = "btn btn-danger ms-3";
     deleteButton.addEventListener("click", () => {
-      removePost(post.id) 
+      removePost(post.id)
         .then(() => {
           console.log(`Deleted post with ID ${post.id}`);
-         
         })
         .catch((error) => {
           console.error(`Failed to delete post with ID ${post.id}: ${error}`);
         });
     });
-    postElement.appendChild(deleteButton); 
+    postElement.appendChild(deleteButton);
 
     postsElement.appendChild(postElement);
   });
