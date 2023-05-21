@@ -1,52 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Register for Noroff API</title>
-  
-  <link href="dist/css/styles.css" rel="stylesheet" />
-</head>
-<body>
-  <header class="bg-primary text-white text-center py-3">
-    <h1>Register for Noroff API</h1>
-  </header>
-  
-  <div class="container mt-5">
-    <form id="registration-form"  method="post" action="/auth/register" >
-      <div class="mb-3">
-        <label for="name" class="form-label">Username:</label>
-        <input type="text" id="name" name="name" class="form-control" required pattern="^[\w]+$">
-      </div>
-      <div class="mb-3">
-        <label for="email" class="form-label">Email:</label>
-        <input type="email" id="email" name="email" class="form-control" required pattern="[\w\-.]+@(stud.)?noroff.no$">
-      </div>
-      <div class="mb-3">
-        <label for="password" class="form-label">Password:</label>
-        <input type="password" id="password" name="password" class="form-control" required minlength="8" autocomplete="current-password">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Page Title</title>
 
+    <link href="/dist/css/styles.css" rel="stylesheet" />
+  </head>
+  <body class="d-flex flex-column min-vh-100">
+    <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/posts/user.html">Noroffa</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+             <li class="nav-item">
+              <a class="nav-link" href="/posts/user.html">My Posts</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/posts/index.html">Posts</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/post/create/index.html">Create Post</a>
+            </li>
+             <li class="nav-item">
+              <a class="nav-link" href="/post/edit/index.html">Edit Post</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/profile/edit/index.html">Update Profile</a>
+            </li>
+          </ul>
+        </div>
       </div>
-      <div class="mb-3">
-        <label for="avatar" class="form-label">Avatar URL:</label>
-        <input type="url" id="avatar" name="avatar" class="form-control">
+    </nav>
+  </header>
+
+    <main class="full-height">
+      <div class="container h-100 pt-5">
+        <div class="row h-100 justify-content-center align-items-center">
+          <div class="col text-center pt-5">
+            <a href="/profile/register/index.html"
+              ><button
+                type="button"
+                class="btn btn-primary custom-register-button"
+              >
+                Register
+              </button></a
+            >
+            <a href="/profile/login/index.html"
+              ><button
+                type="button"
+                class="btn btn-secondary custom-login-button"
+              >
+                Log In
+              </button></a
+            >
+          </div>
+        </div>
       </div>
-      <div class="mb-3">
-        <label for="banner" class="form-label">Banner URL:</label>
-        <input type="url" id="banner" name="banner" class="form-control">
-      </div>
-      <div class="mb-3">
-        <button type="submit" class="btn btn-primary">Register</button>
-      </div>
-    </form>
-  </div>
-  
-  <footer class="bg-secondary text-white text-center py-3 mt-auto">
-    <p>&copy; 2023 Noroff API. All rights reserved.</p>
-  </footer>
-  
- 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
-  <script src="/source/js/handlers/register.mjs" type="module"></script>
-</body>
+    </main>
+
+    <footer class="bg-secondary text-white text-center py-3 mt-auto">
+      <p>&copy; 2023 Noroff API. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    <script src="/source/js/index.js" type="module"></script>
+  </body>
 </html>
