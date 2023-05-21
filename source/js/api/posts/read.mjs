@@ -12,12 +12,16 @@ const path = "/posts";
 export async function getPosts() {
   const updatePostURL = `${API_SOCIAL_URL}${path}`;
   const response = await authFetch(updatePostURL);
-  const json = await response.json();
-  if (response.ok) {
-    return json;
+
+  if (!response.ok) {
+    const json = await response.json();
+    throw new Error(json.errors[0].message);
   }
-  throw new Error(json.errors[0].messages);
+
+  const json = await response.json();
+  return json;
 }
+
 
 /**
  * Fetches all posts by a particular user from the API.

@@ -13,7 +13,7 @@ export default function router() {
       listeners.setRegisterFormListener();
       break;
     case "/posts/":
-    case "/posts/index.html/":
+    case "/posts/index.html":
       listeners.setDisplayPostsListener();
       break; 
     case "/posts/user.html":
