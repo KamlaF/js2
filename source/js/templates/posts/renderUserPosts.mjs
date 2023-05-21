@@ -1,6 +1,7 @@
 import { removePost } from "/source/js/api/posts/delete.mjs";
 
 export function renderUserPosts(posts) {
+    console.log(posts); 
   const postsElement = document.getElementById("userPosts");
   if (!postsElement) {
     return;

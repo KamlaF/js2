@@ -15,8 +15,10 @@ export default function router() {
     case "/posts/":
     case "/posts/index.html/":
       listeners.setDisplayPostsListener();
+      break; 
     case "/posts/user.html":
       listeners.setDisplayUserPostsListener();
+      break; 
     case "/post/create/":
     case "/post/create/index.html":
       listeners.setCreatePostFormListener();

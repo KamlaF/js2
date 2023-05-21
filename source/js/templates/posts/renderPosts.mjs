@@ -1,4 +1,5 @@
 export function renderPosts(posts) {
+    console.log(posts); 
   const postsElement = document.getElementById("posts");
   if (!postsElement) {
     return;
